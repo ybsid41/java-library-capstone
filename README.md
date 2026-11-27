@@ -15,11 +15,11 @@ A command-line Java application for managing library items, members, loans, due 
    ```
 4. **Run from an input file and save output:**
    ```bash
-   java LibraryApp < input.txt > actual.txt
+   java LibraryApp < input.txt > output.txt
    ```
 5. **Compare actual output with expected output (macOS / Linux):**
    ```bash
-   diff -u expected.txt actual.txt
+   diff -u expected.txt output.txt
    ```
 
 ## Notes
