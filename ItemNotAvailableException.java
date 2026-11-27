@@ -1,5 +1,5 @@
 public class ItemNotAvailableException extends LibraryException{
-    ItemNotAvailableException(String msg){
+    public ItemNotAvailableException(String msg){
         super(msg);
     }
 }

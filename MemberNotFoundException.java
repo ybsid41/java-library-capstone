@@ -1,5 +1,5 @@
 public class MemberNotFoundException extends LibraryException{
-    MemberNotFoundException(String id){
+    public MemberNotFoundException(String id){
         super("member " + id + " not found");
     }
 }

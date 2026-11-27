@@ -1,5 +1,5 @@
 public class ItemNotOnLoanException extends LibraryException{
-    ItemNotOnLoanException(String id){
+    public ItemNotOnLoanException(String id){
         super(id + " is not on loan");
     }
 }

@@ -1,9 +1,9 @@
 import java.util.*;
 public class Library {
-    private int currentDay = 1;
-    private Map<String, LibraryItem> items;
-    private Map<String, Member> members;
-    private Map<String, Loan> loans;
+    private int currentDay = 0;
+    private Map<String, LibraryItem> items = new HashMap<>();
+    private Map<String, Member> members = new HashMap<>();
+    private Map<String, Loan> loans = new HashMap<>();
     public void addBook(String id, String title, String author){
         items.put(id, new Book(id, title, author));
     }
@@ -34,9 +34,11 @@ public class Library {
     public int returnItem(String itemId) throws LibraryException{
         if(! items.containsKey(itemId)) throw new ItemNotFoundException(itemId);
         if(! loans.containsKey(itemId)) throw new ItemNotOnLoanException(itemId);
-        return loans.get(itemId).calculateFine(currentDay);
+        Loan loan = loans.remove(itemId);
+        return loan.calculateFine(currentDay);
     }
     public int advanceDay(int days){
+        if(days < 0) throw new IllegalArgumentException("Invalid number of days");
         currentDay += days;
         return currentDay;
     }
@@ -80,4 +82,10 @@ public class Library {
     public List<LibraryItem> getInventory(){
         return new ArrayList<>(items.values());
     }
+
+    public Member isItemOnLoan(String itemId) {
+        Loan l = loans.getOrDefault(itemId, null);
+        return (l == null) ? null : l.getMember();
+    }
+
 }
